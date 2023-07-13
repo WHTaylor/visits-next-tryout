@@ -1,0 +1,10 @@
+.header {
+    background: linear-gradient(
+        #fff, #e2e2e2
+    );
+    border-bottom: 2px solid #c6c6c6;
+    padding:0.3em;
+}
+
+.header h3 {
+}
