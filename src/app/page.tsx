@@ -1,8 +1,10 @@
 import styles from "./page.module.css";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import VisitTable from "@/components/VisitTable";
 import VisitTableTabs from "@/components/VisitTableTabs";
-import { Visit } from "@/types";
+import { deserialize, Visit } from "@/types";
+import { latestDeparture } from "@/utils";
+import dayjs from "dayjs";
 
 function makeVisitTable(title: string, visits: Visit[]) {
   return (
@@ -12,7 +14,21 @@ function makeVisitTable(title: string, visits: Visit[]) {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const visits: Visit[] = await fetch("http://localhost:3000/api/visits")
+    .then((res) => res.json())
+    .then(deserialize);
+
+  console.log(visits);
+  const now = dayjs();
+  const completeVisits = visits?.filter(
+    (v) => v.status !== "draft" && latestDeparture(v)?.isBefore(now),
+  );
+  const draftVisits = visits?.filter((v) => v.status === "draft");
+  const upcomingVisits = visits?.filter(
+    (v) => v.status !== "draft" && latestDeparture(v)?.isAfter(now),
+  );
+
   return (
     <main className={styles.main}>
       <Typography variant="h4" component="h1">
@@ -28,15 +44,15 @@ export default function Home() {
             label: "Current and Upcoming",
             child: (
               <>
-                {makeVisitTable("Submitted Requests", [{ id: 123 }])}
-                {makeVisitTable("Draft Requests", [{ id: 321 }, { id: 323 }])}
+                {makeVisitTable("Submitted Requests", upcomingVisits)}
+                {makeVisitTable("Draft Requests", draftVisits)}
               </>
             ),
           },
           {
             label: "Completed",
             // eslint-disable-next-line react/jsx-key
-            child: makeVisitTable("Previous Visits", [{ id: 111 }]),
+            child: makeVisitTable("Previous Visits", completeVisits),
           },
         ]}
       />
