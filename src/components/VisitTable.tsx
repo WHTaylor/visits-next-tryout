@@ -1,5 +1,6 @@
 import {
   Box,
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -25,7 +26,7 @@ const VisitTable = ({ visits, title, titleVariant = "h5" }: Props) => {
   return (
     <>
       <Typography variant={titleVariant}>{title}</Typography>
-      <Box className={styles.tableContainer}>
+      <Box component={Paper} className={styles.tableContainer}>
         <Table className={styles.visitTable} size="small">
           <TableHead>
             <TableRow>

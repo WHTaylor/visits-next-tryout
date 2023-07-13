@@ -6,11 +6,8 @@
 }
 
 .content {
-  margin: 1em;
-  padding: 2em;
-  background: linear-gradient(#eee, #e4e4e4);
-  border: 0.2em solid #555;
-  border-radius: 0.3em;
+  margin: 0.8em;
+  padding: 1.5em;
 }
 
 /* Mobile */

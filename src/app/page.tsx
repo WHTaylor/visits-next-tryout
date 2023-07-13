@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import VisitTable from "@/components/VisitTable";
 import VisitTableTabs from "@/components/VisitTableTabs";
 import { Visit } from "@/types";
@@ -7,9 +7,7 @@ import { Visit } from "@/types";
 function makeVisitTable(title: string, visits: Visit[]) {
   return (
     <Box className={styles.content}>
-      <Box>
-        <VisitTable title={title} visits={visits} />
-      </Box>
+      <VisitTable title={title} visits={visits} />
     </Box>
   );
 }

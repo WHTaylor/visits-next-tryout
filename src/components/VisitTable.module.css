@@ -1,10 +1,6 @@
 .tableContainer {
     padding: 0.5em;
-    background: linear-gradient(
-        white, #eaeae0
-    );
     border-radius: 0.4em;
-    border: 2px solid #aaa
 }
 
 .visitTable {
