@@ -13,21 +13,19 @@ type TableTab = {
   child: React.JSX.Element;
 };
 
-const VisitTableTabs = ({ tabs }: Props) => {
+const TabbedWindow = ({ tabs }: Props) => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <Box component={Paper} className={styles.visitTableTabsContainer}>
+    <Box component={Paper} className={styles.tabbedWindowContainer}>
       <Tabs value={activeIdx} onChange={(_, i) => setActiveIdx(i)}>
         {tabs.map((t) => (
           <Tab key={t.label} label={t.label} disableRipple />
         ))}
       </Tabs>
-      <Box className={styles.activeVisitTableContainer}>
-        {tabs[activeIdx].child}
-      </Box>
+      <Box className={styles.activeTabContainer}>{tabs[activeIdx].child}</Box>
     </Box>
   );
 };
 
-export default VisitTableTabs;
+export default TabbedWindow;

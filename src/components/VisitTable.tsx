@@ -1,6 +1,7 @@
 import {
   Box,
   Paper,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -15,7 +16,7 @@ import { Variant } from "@mui/material/styles/createTypography";
 import { earliestArrival, latestDeparture } from "@/utils";
 
 type Props = {
-  visits: Visit[];
+  visits?: Visit[];
   title: string;
   titleVariant?: Variant;
 };
@@ -24,7 +25,9 @@ const VisitTable = ({ visits, title, titleVariant = "h5" }: Props) => {
   return (
     <>
       <Typography variant={titleVariant}>{title}</Typography>
-      {visits.length === 0 ? (
+      {visits === undefined ? (
+        <Skeleton variant="rounded" width={500} height={100} />
+      ) : visits.length === 0 ? (
         <p>Nothing here</p>
       ) : (
         <Box component={Paper} className={styles.tableContainer}>
