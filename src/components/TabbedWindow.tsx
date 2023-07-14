@@ -17,7 +17,10 @@ const TabbedWindow = ({ tabs }: Props) => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <Box component={Paper} className={styles.tabbedWindowContainer}>
+    <Box
+      component={Paper}
+      className={"centered-column-flex " + styles.tabbedWindowContainer}
+    >
       <Tabs value={activeIdx} onChange={(_, i) => setActiveIdx(i)}>
         {tabs.map((t) => (
           <Tab key={t.label} label={t.label} disableRipple />

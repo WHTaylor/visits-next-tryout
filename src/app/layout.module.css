@@ -1,13 +1,7 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 1em;
 }
 
 .titlesBox a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding-bottom: 0.8em;
 }

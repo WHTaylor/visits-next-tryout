@@ -20,9 +20,14 @@ export default function RootLayout({
       <CssBaseline />
       <body>
         <Header />
-        <main className={styles.main}>
+        <main className={"centered-column-flex " + styles.main}>
           <Box className={styles.titlesBox}>
-            <Link href="/" underline="hover" color="inherit">
+            <Link
+              className="centered-column-flex"
+              href="/"
+              underline="hover"
+              color="inherit"
+            >
               <Typography variant="h4" component="h1">
                 Visits
               </Typography>
