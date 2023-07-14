@@ -1,8 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
-import { CssBaseline } from "@mui/material";
+import { Box, CssBaseline, Link, Typography } from "@mui/material";
 import React from "react";
+import styles from "./layout.module.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +20,20 @@ export default function RootLayout({
       <CssBaseline />
       <body>
         <Header />
-        {children}
+        <main className={styles.main}>
+          <Box className={styles.titlesBox}>
+            <Link href="/" underline="hover" color="inherit">
+              <Typography variant="h4" component="h1">
+                Visits
+              </Typography>
+              <Typography variant="subtitle1">
+                Some descriptive subtitle here
+              </Typography>
+            </Link>
+          </Box>
+
+          {children}
+        </main>
       </body>
     </html>
   );

@@ -35,14 +35,7 @@ export default async function Home() {
   );
 
   return (
-    <main className={styles.main}>
-      <Typography variant="h4" component="h1">
-        Visits
-      </Typography>
-      <Typography variant="subtitle1">
-        Some descriptive subtitle here
-      </Typography>
-
+    <>
       <CreateRequestButton />
 
       <VisitTableTabs
@@ -63,6 +56,6 @@ export default async function Home() {
           },
         ]}
       />
-    </main>
+    </>
   );
 }
