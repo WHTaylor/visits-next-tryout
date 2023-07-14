@@ -21,3 +21,10 @@ export function isUserOnVisit(visit: Visit, user: number) {
     visit.requester === user || any(visit.visitors, (vis) => vis.id === user)
   );
 }
+
+/**
+ * Wait for 50-150ms to simulate network delay
+ */
+export async function networkDelay() {
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 100 + 50));
+}
