@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: Request) {
   await networkDelay();
-  const id = createVisit(1);
+  const id = createVisit("1");
   revalidatePath("/");
   return NextResponse.json({ id });
 }

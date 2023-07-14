@@ -2,7 +2,7 @@ import dayjs, { Dayjs } from "dayjs";
 
 type VisitBase = {
   id: number;
-  requester: number;
+  requester: string;
   status: "draft" | "submitted" | "accepted";
 };
 
@@ -16,6 +16,7 @@ export type VisitDto = VisitBase & {
 
 type VisitorBase = {
   id: number;
+  userNumber: string;
 };
 
 export type Visitor = VisitorBase & {
@@ -28,7 +29,7 @@ export type VisitorDto = VisitorBase & {
   departure: string;
 };
 
-function deserializeVisitor(dto: VisitorDto) {
+export function deserializeVisitor(dto: VisitorDto) {
   return {
     ...dto,
     arrival: dayjs(dto.arrival),
@@ -45,3 +46,20 @@ export function deserialize(dto: VisitDto | VisitDto[]) {
 
   return Array.isArray(dto) ? dto.map(deserialize) : deserialize(dto);
 }
+
+function serializeVisitor(visitor: Visitor) {
+  return {
+    ...visitor,
+    arrival: visitor.arrival.toISOString(),
+    departure: visitor.departure.toISOString(),
+  };
+}
+
+export function serialize(visit: Visit): VisitDto {
+  return { ...visit, visitors: visit.visitors.map(serializeVisitor) };
+}
+
+export type User = {
+  userNumber: string;
+  fullName: string;
+};

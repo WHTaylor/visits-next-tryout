@@ -16,9 +16,10 @@ export function latestDeparture(visit: Visit): null | Dayjs {
   return dayjs.max(visit.visitors.map((v) => v.departure));
 }
 
-export function isUserOnVisit(visit: Visit, user: number) {
+export function isUserOnVisit(visit: Visit, user: string) {
   return (
-    visit.requester === user || any(visit.visitors, (vis) => vis.id === user)
+    visit.requester === user ||
+    any(visit.visitors, (vis) => vis.userNumber === user)
   );
 }
 
@@ -27,4 +28,8 @@ export function isUserOnVisit(visit: Visit, user: number) {
  */
 export async function networkDelay() {
   await new Promise((resolve) => setTimeout(resolve, Math.random() * 100 + 50));
+}
+
+export function capitalize(s: string) {
+  return s.substring(0, 1).toUpperCase() + s.substring(1);
 }

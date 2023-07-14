@@ -1,6 +1,7 @@
 import { deserialize, Visit } from "@/types";
 import { Box, Link, Paper } from "@mui/material";
 import styles from "./page.module.css";
+import VisitForm from "@/components/visit-form/VisitForm";
 
 type Props = {
   params: Params;
@@ -28,7 +29,7 @@ const ViewVisit = async ({ params }: Props) => {
       <Link href="/">Go back</Link>
     </Box>
   ) : (
-    <p>This is visit {visit.id}</p>
+    <VisitForm visit={visit} />
   );
 };
 
