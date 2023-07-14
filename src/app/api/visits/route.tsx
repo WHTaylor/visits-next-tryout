@@ -1,15 +1,15 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createVisit, getVisits, getVisitsForUser } from "@/app/api/data";
+import { revalidatePath } from "next/cache";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-
-  const user = searchParams.get("user");
+export async function GET(request: NextRequest) {
+  const user = request.nextUrl.searchParams.get("user");
   const data = user !== null ? getVisitsForUser(user) : getVisits();
   return NextResponse.json(data);
 }
 
 export async function POST(request: Request) {
   const id = createVisit(1);
+  revalidatePath("/");
   return NextResponse.json({ id });
 }

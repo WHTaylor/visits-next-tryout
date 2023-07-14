@@ -8,7 +8,6 @@ type Params = {
   id: number;
 };
 
-let a = 1;
 const ViewVisit = async ({ params }: Props) => {
   const visit: Visit | "oh no" = await fetch(
     "http://localhost:3000/api/visits/" + params.id,
