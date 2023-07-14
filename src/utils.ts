@@ -15,3 +15,9 @@ export function earliestArrival(visit: Visit): null | Dayjs {
 export function latestDeparture(visit: Visit): null | Dayjs {
   return dayjs.max(visit.visitors.map((v) => v.departure));
 }
+
+export function isUserOnVisit(visit: Visit, user: number) {
+  return (
+    visit.requester === user || any(visit.visitors, (vis) => vis.id === user)
+  );
+}

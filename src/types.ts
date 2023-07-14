@@ -11,7 +11,7 @@ export type Visit = VisitBase & {
 };
 
 export type VisitDto = VisitBase & {
-  visitors: VisitorDto[];
+  visitors?: VisitorDto[];
 };
 
 type VisitorBase = {
@@ -36,9 +36,12 @@ function deserializeVisitor(dto: VisitorDto) {
   };
 }
 
-export function deserialize(dtos: VisitDto[]) {
-  return dtos.map((dto) => ({
-    ...dto,
-    visitors: dto.visitors.map(deserializeVisitor),
-  }));
+export function deserialize(dto: VisitDto): Visit;
+export function deserialize(dto: VisitDto[]): Visit[];
+export function deserialize(dto: VisitDto | VisitDto[]) {
+  function deserialize(v: VisitDto): Visit {
+    return { ...v, visitors: v.visitors?.map(deserializeVisitor) ?? [] };
+  }
+
+  return Array.isArray(dto) ? dto.map(deserialize) : deserialize(dto);
 }

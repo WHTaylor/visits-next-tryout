@@ -5,6 +5,7 @@ import VisitTableTabs from "@/components/VisitTableTabs";
 import { deserialize, Visit } from "@/types";
 import { latestDeparture } from "@/utils";
 import dayjs from "dayjs";
+import CreateRequestButton from "@/components/CreateRequestButton";
 
 function makeVisitTable(title: string, visits: Visit[]) {
   return (
@@ -15,11 +16,15 @@ function makeVisitTable(title: string, visits: Visit[]) {
 }
 
 export default async function Home() {
-  const visits: Visit[] = await fetch("http://localhost:3000/api/visits")
+  const visits: Visit[] = await fetch(
+    "http://localhost:3000/api/visits?user=1",
+    {
+      method: "GET",
+    },
+  )
     .then((res) => res.json())
     .then(deserialize);
 
-  console.log(visits);
   const now = dayjs();
   const completeVisits = visits?.filter(
     (v) => v.status !== "draft" && latestDeparture(v)?.isBefore(now),
@@ -37,6 +42,8 @@ export default async function Home() {
       <Typography variant="subtitle1">
         Some descriptive subtitle here
       </Typography>
+
+      <CreateRequestButton />
 
       <VisitTableTabs
         tabs={[

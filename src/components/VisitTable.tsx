@@ -31,7 +31,7 @@ const VisitTable = ({ visits, title, titleVariant = "h5" }: Props) => {
           <Table className={styles.visitTable} size="small">
             <TableHead>
               <TableRow>
-                <TableCell>Visit Number</TableCell>
+                <TableCell>Visit ID</TableCell>
                 <TableCell>Number of visitors</TableCell>
                 <TableCell>Start</TableCell>
                 <TableCell>End</TableCell>
