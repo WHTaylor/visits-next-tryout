@@ -20,23 +20,23 @@ export default function RootLayout({
       <CssBaseline />
       <body>
         <Header />
-        <main className={"centered-column-flex " + styles.main}>
-          <Box className={styles.titlesBox}>
-            <Link
-              className="centered-column-flex"
-              href="/"
-              underline="hover"
-              color="inherit"
-            >
-              <Typography variant="h4" component="h1">
-                Visits
-              </Typography>
-              <Typography variant="subtitle1">
-                Some descriptive subtitle here
-              </Typography>
-            </Link>
-          </Box>
+        <Box className={"centered-column-flex " + styles.titlesBox}>
+          <Link
+            className="centered-column-flex"
+            href="/"
+            underline="hover"
+            color="inherit"
+          >
+            <Typography variant="h4" component="h1">
+              Visits
+            </Typography>
+            <Typography variant="subtitle1">
+              Some descriptive subtitle here
+            </Typography>
+          </Link>
+        </Box>
 
+        <main className={"centered-column-flex " + styles.main}>
           {children}
         </main>
       </body>
