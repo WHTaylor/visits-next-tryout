@@ -1,9 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
-import { Box, CssBaseline, Link, Typography } from "@mui/material";
+import { Box, CssBaseline, Link as MuiLink, Typography } from "@mui/material";
 import React from "react";
 import styles from "./layout.module.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +22,8 @@ export default function RootLayout({
       <body>
         <Header />
         <Box className={"centered-column-flex " + styles.titlesBox}>
-          <Link
+          <MuiLink
+            component={Link}
             className="centered-column-flex"
             href="/"
             underline="hover"
@@ -33,7 +35,7 @@ export default function RootLayout({
             <Typography variant="subtitle1">
               Some descriptive subtitle here
             </Typography>
-          </Link>
+          </MuiLink>
         </Box>
 
         <main className={"centered-column-flex " + styles.main}>
