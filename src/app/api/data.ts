@@ -3,7 +3,7 @@
  */
 
 import { User, Visit } from "@/types";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { any } from "@/utils";
 
 const visits: Visit[] = [
@@ -112,6 +112,28 @@ export function createVisit(requester: string) {
     visitors: [],
   };
   visits.push(newVisit);
+  return id;
+}
+
+export function createVisitor(
+  visitId: string,
+  userNumber: string,
+  arrival: Dayjs,
+  departure: Dayjs,
+) {
+  const visit = getVisit(visitId);
+  if (visit === null) return null;
+
+  const id =
+    Math.max(...visits.flatMap((v) => v.visitors).map((v) => v.id)) + 1;
+  const newVisitor = {
+    id,
+    userNumber,
+    arrival,
+    departure,
+  };
+
+  visit.visitors.push(newVisitor);
   return id;
 }
 

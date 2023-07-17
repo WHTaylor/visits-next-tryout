@@ -4,6 +4,10 @@ import minMax from "dayjs/plugin/minMax";
 
 dayjs.extend(minMax);
 
+export function withoutItem<T>(a: T[], idx: number): T[] {
+  return a.slice(0, idx).concat(a.slice(idx + 1));
+}
+
 export function any<T>(l: T[], pred: (t: T) => boolean) {
   return l.filter(pred).length > 0;
 }

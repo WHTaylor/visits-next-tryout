@@ -18,7 +18,7 @@ const VisitForm = ({ visit }: Props) => {
         Status: {capitalize(visit.status)}
       </Typography>
 
-      <VisitorsInput visitors={serialize(visit).visitors} />
+      <VisitorsInput visitors={serialize(visit).visitors} visitId={visit.id} />
     </Box>
   );
 };

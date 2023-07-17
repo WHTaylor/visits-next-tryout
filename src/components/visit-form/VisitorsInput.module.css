@@ -1,3 +1,13 @@
-.visitorDatesContainer  > div {
+.visitorsInputContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.visitorDatesContainer > div {
     padding: 0 0.2em;
+}
+
+.addVisitorButton {
+    margin: 0.5em;
+    align-self: flex-end;
 }
